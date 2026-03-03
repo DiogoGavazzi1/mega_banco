@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mega Banco</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-dark text-light">
+
+<h1 class="text-center container mt-5">
+    <strong>Login No Mega Banco</strong>
+</h1>
+
+<section class="container d-flex align-items-center mt-5">
+
+    <div class="bg-dark shadow-lg text-light p-5 rounded col-md-6">
+        <form>
+            <div>
+                <label class="form-label">UserName</label>
+                <input type="text" class="form-control" id="username">
+            </div>
+
+            <div class="mb-3 mt-3">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control">
+            </div>
+
+            <button type="submit" id="botao" class="btn btn-primary">
+                Login
+            </button>
+        </form>
+    </div>
+
+    <div class="ms-5 bg-dark shadow-lg text-light p-5 rounded col-md-6">
+        <p id="texto"></p>
+    </div>
+
+</section>
+
+<!-- JUMPSCARE OVERLAY -->
+<div id="jumpscare"
+     class="d-none position-fixed top-0 start-0 w-100 h-100 bg-black d-flex justify-content-center align-items-center"
+     style="z-index:9999;">
+
+    <video id="videoScare"
+           class="w-100 h-100 object-fit-cover"
+           autoplay
+           muted>
+        <source src="jumpscare.mp4" type="video/mp4">
+    </video>
+
+</div>
+
+<script>
+const botao = document.getElementById('botao');
+const texto = document.getElementById('texto');
+const usernameInput = document.getElementById('username');
+
+botao.addEventListener('click', function(event) {
+
+    event.preventDefault();
+
+    const username = usernameInput.value.trim();
+
+    if (username === "JoAo_SoUsa_Dx14r") {
+
+        // Fade out inicial
+        document.body.style.transition = "0.5s";
+        document.body.style.opacity = "0";
+
+        setTimeout(() => {
+
+            const scare = document.getElementById("jumpscare");
+            const video = document.getElementById("videoScare");
+
+            document.body.style.opacity = "1";
+
+            scare.classList.remove("d-none");
+
+            video.muted = false;
+            video.volume = 1;
+            video.play();
+
+            // Tremor agressivo
+            setInterval(() => {
+                scare.style.transform =
+                `translate(${Math.random()*40-20}px, ${Math.random()*40-20}px)`;
+            }, 30);
+
+        }, 1500);
+
+    } else {
+
+        texto.innerText =
+        "Essa senha já está a ser utilizada por JoAo_SoUsa_Dx14r, por favor tente outra senha.";
+    }
+
+});
+</script>
+
+</body>
+</html>
